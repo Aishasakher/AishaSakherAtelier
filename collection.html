@@ -1,60 +1,103 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Collection | Aisha Sakher Couture</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Collection</title>
 <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
+<!-- NAV -->
 <nav>
-<div class="logo">AS</div>
+  <div class="logo">AS</div>
 
-<ul>
-<li><a href="index.html">Home</a></li>
-<li><a href="collection.html">Collection</a></li>
-<li><a href="about.html">About</a></li>
-<li><a href="contact.html">Contact</a></li>
-</ul>
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="collection.html">Collection</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
 </nav>
 
+<!-- COLLECTION -->
 <section class="collection">
 
-<h2>Graduate Collection</h2>
+  <h2>Graduate Collection</h2>
 
-<div class="grid">
+  <div class="grid">
 
-<div class="card">
-<img src="gr.png">
-<div class="card-overlay">
-<h3>Complex Geometry Dress</h3>
-<p>Radial couture structure</p>
-</div>
-</div>
+    <!-- CARD 1 -->
+    <div class="card" data-alt="gr-alt.png">
+      <img src="gr.png" alt="Complex Geometry Dress">
 
-<div class="card">
-<img src="b.png">
-<div class="card-overlay">
-<h3>Minimal Geometry Dress</h3>
-<p>Balanced movement</p>
-</div>
-</div>
+      <div class="card-overlay">
+        <h3>Complex Geometry Dress</h3>
+        <p>Radial couture structure</p>
+      </div>
+    </div>
 
-<div class="card">
-<img src="g.png">
-<div class="card-overlay">
-<h3>Mid Geometry Dress</h3>
-<p>Soft feminine flow</p>
-</div>
-</div>
+    <!-- CARD 2 -->
+    <div class="card" data-alt="b-alt.png">
+      <img src="b.png" alt="Minimal Geometry Dress">
 
-</div>
+      <div class="card-overlay">
+        <h3>Minimal Geometry Dress</h3>
+        <p>Balanced movement</p>
+      </div>
+    </div>
+
+    <!-- CARD 3 -->
+    <div class="card" data-alt="g-alt.png">
+      <img src="g.png" alt="Mid Geometry Dress">
+
+      <div class="card-overlay">
+        <h3>Mid Geometry Dress</h3>
+        <p>Soft feminine flow</p>
+      </div>
+    </div>
+
+  </div>
 
 </section>
 
+<!-- LIGHTBOX (needed for click effect) -->
+<div class="lightbox" id="lightbox">
+  <div class="lightbox-content">
+    <img id="lightbox-img" src="" alt="">
+  </div>
+</div>
+
+<!-- FOOTER -->
 <footer>
-© 2026 Aisha Sakher Couture
+  © 2026 Aisha Sakher Couture
 </footer>
+
+<!-- SCRIPT -->
+<script>
+const cards = document.querySelectorAll(".card");
+const lightbox = document.getElementById("lightbox");
+const lightboxImg = document.getElementById("lightbox-img");
+
+cards.forEach(card => {
+  card.addEventListener("click", () => {
+
+    const altImg = card.getAttribute("data-alt");
+    const mainImg = card.querySelector("img").src;
+
+    lightboxImg.src = altImg || mainImg;
+    lightbox.classList.add("active");
+
+    document.body.style.overflow = "hidden";
+  });
+});
+
+lightbox.addEventListener("click", () => {
+  lightbox.classList.remove("active");
+  document.body.style.overflow = "auto";
+});
+</script>
 
 </body>
 </html>
